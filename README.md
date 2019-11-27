@@ -3,7 +3,7 @@
 ### Introduction:
 We proposed SEGAN, a novel diversity-generated image inpainting adversarial network with a newly designed style extractor for diversity image inpainting tasks. For a single input image with missing regions, our model can generate numerous diverse results with plausible content. Experiments on various datasets have shown that our results are diverse and natural, especially for images with large missing areas. After the paper is published, a detailed description of the method can be found in our [paper].
 <p align='center'>  
-  <img src='https://user-images.githubusercontent.com/1743048/50673917-aac15080-0faf-11e9-9100-ef10864087c8.png' width='870'/>
+  <img src='https://raw.githubusercontent.com/vivitsai/SEGAN/master/examples/case1.jpg' width='870'/>
 </p>
 Examples of the inpainting results of our method on a face, leaf, and rainforest image (the missing regions are shown in white). The left is the masked input image, while the right is the diverse and plausible direct output of our trained model without any postprocessing.
 
