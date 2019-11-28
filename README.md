@@ -25,7 +25,7 @@ We use [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), [Agricultural
 
 After downloading, run [`flist.py`](flist.py) to generate train and validation set file lists. 
 ```bash
-bash ./flist.py
+python ./flist.py
 ```
 
 ## Getting Started
