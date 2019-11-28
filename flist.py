@@ -21,7 +21,6 @@ def _get_filenames(dataset_dir):
     photo_filenames = [os.path.join(dataset_dir, _) for _ in image_list]
     return photo_filenames
 
-
 if __name__ == "__main__":
 
     args = parser.parse_args()

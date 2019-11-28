@@ -64,10 +64,11 @@ This script will inpaint all images in `./examples/celeba/images` using their co
 To evaluate the model, you need to first run the model in [test mode](#testing) against your validation set and save the results on disk. We provide a utility [`./evaluate.py`](evaluate.py) to evaluate the model using PSNR, SSIM:
 
 ```bash
-python ./evaluate.py --data-path [path to validation set] --output-path [path to model output]
+python ./evaluate.py --data-path [path to validation set] --output-path [path to model output] 
 ```
 
 To measure the Fréchet Inception Distance (FID score) run [`./fid_score.py`](fid_score.py). We utilize the PyTorch implementation of FID [from here](https://github.com/mseitzer/pytorch-fid) which uses the pretrained weights from PyTorch's Inception model.
+
 
 ```bash
 python ./fid_score.py --path [path to validation, path to model output] --gpu [GPU id to use]
