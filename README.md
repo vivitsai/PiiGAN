@@ -21,12 +21,15 @@ git clone https://github.com/vivitsai/SEGAN.git
 - Install Tensorflow from https://tensorflow.google.cn/
 
 ## Datasets
-We use [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), Agricultural Disease and [MauFlex](http://didt.inictel-uni.edu.pe/dataset/MauFlex_Dataset.rar,) datasets. To train a model on the full dataset, download datasets from official websites. 
+We use [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), [Agricultural Disease](#) and [MauFlex](http://didt.inictel-uni.edu.pe/dataset/MauFlex_Dataset.rar,) datasets. To train a model on the full dataset, download datasets from official websites. 
 
-After downloading, run [`flist.py`](flist.py) to generate train, test and validation set file lists. 
+After downloading, run [`flist.py`](flist.py) to generate train and validation set file lists. 
+```bash
+bash ./flist.py
+```
 
 ## Getting Started
-Download the pre-trained models using the following links and copy them under `./data_model` directory.
+Download the pre-trained models using the following links and copy them under `./data_models` directory.
 
 [CelebA](#)
 
@@ -36,7 +39,7 @@ bash ./download_model.sh
 ```
 
 ### 1) Training
-To train the model, create a `setting.yaml` file similar to the [example config file](https://github.com/vivitsai/SEGAN/blob/master/setting.yml.example) and copy it under your root directory. Read the [configuration](#model-configuration) guide for more information on model configuration.
+To train the model, create a `setting.yaml` file similar to the [example config file](https://github.com/vivitsai/SEGAN/blob/master/setting.yml.example) and copy it under your root directory. 
 
 To train the model:
 ```bash
@@ -47,17 +50,13 @@ Convergence of the model differs from dataset to dataset. For example MauFlex da
 
 ### 2) Testing
 
-```bash
-python test.py --image examples/input.png --mask examples/mask.png --output examples/output.png --checkpoint model_logs/your_model_dir
-```
-
 We provide some test examples under `./examples` directory. Please download the [pre-trained models](#getting-started) and run:
 ```bash
 python test.py \
-  --checkpoints ./checkpoints/places2 
-  --input ./examples/places2/images 
-  --mask ./examples/places2/masks
-  --output ./checkpoints/results
+  --checkpoint_dir ./data_models/celeba 
+  --image ./examples/celeba/images 
+  --mask ./examples/mask.png
+  --output ./examples/output.png
 ```
 This script will inpaint all images in `./examples/celeba/images` using their corresponding masks mask.png and saves the results in output.png. 
 
@@ -68,19 +67,15 @@ To evaluate the model, you need to first run the model in [test mode](#testing) 
 python ./evaluate.py --data-path [path to validation set] --output-path [path to model output]
 ```
 
-To measure the Fréchet Inception Distance (FID score) run [`./scripts/fid_score.py`](fid_score.py). We utilize the PyTorch implementation of FID [from here](https://github.com/mseitzer/pytorch-fid) which uses the pretrained weights from PyTorch's Inception model.
+To measure the Fréchet Inception Distance (FID score) run [`./fid_score.py`](fid_score.py). We utilize the PyTorch implementation of FID [from here](https://github.com/mseitzer/pytorch-fid) which uses the pretrained weights from PyTorch's Inception model.
 
 ```bash
 python ./fid_score.py --path [path to validation, path to model output] --gpu [GPU id to use]
 ```
 
 
-### Model Configuration
+### Load training and validation set in directory `./data_flist`
 
-The model configuration is stored in a [`setting.yaml`](setting.yml.example) file under your root directory. The following tables provide the documentation for all the options available in the configuration file:
-
-
-#### Load training and validation set in directory `./data_flist`
 
 Option          | Description
 ----------------| -----------
@@ -88,22 +83,8 @@ train_shuffled.flist            | text file containing training set files list
 validation_shuffled.flist       | text file containing validation set files list
 
 
-#### Training Mode Configurations
-
-Option                 |Default| Description
------------------------|-------|------------
-DATASET                | CelebA    
-RANDOM_CROP            | True     
-LOG_DIR                | celeba_model    
-MODEL_LOG              | data_models    
-MODEL_RESTORE          | celeba_model    
-GAN_LOSS_ALPHA         | 0.001    
-WGAN_GP_LAMBDA         | 10     
-COARSE_L1_ALPHA        | 1.2     
-AE_LOSS_ALPHA          | 1.2     
-LOSS_KL                | 0.1     
 
 ## License
 Licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).
 
-Creative Commons Attribution-NonCommercial 4.0 International
+The software is for educaitonal and academic research purpose only.
