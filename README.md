@@ -88,8 +88,22 @@ train_shuffled.flist            | text file containing training set files list
 validation_shuffled.flist       | text file containing validation set files list
 
 
+#### Training Mode Configurations
+
+Option                 |Default| Description
+-----------------------|-------|------------
+DATASET                | CelebA    
+RANDOM_CROP            | True     
+LOG_DIR                | celeba_model    
+MODEL_LOG              | data_models    
+MODEL_RESTORE          | celeba_model    
+GAN_LOSS_ALPHA         | 0.001    
+WGAN_GP_LAMBDA         | 10     
+COARSE_L1_ALPHA        | 1.2     
+AE_LOSS_ALPHA          | 1.2     
+LOSS_KL                | 0.1     
 
 ## License
 Licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).
 
-Except where otherwise noted, this content is published under a [CC BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) license, which means that you can copy, remix, transform and build upon the content as long as you do not use the material for commercial purposes and give appropriate credit and provide a link to the license.
+Creative Commons Attribution-NonCommercial 4.0 International
