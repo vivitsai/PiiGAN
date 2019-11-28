@@ -36,7 +36,7 @@ bash ./download_model.sh
 ```
 
 ### 1) Training
-To train the model, create a `setting.yaml` file similar to the [example config file](https://github.com/vivitsai/SEGAN/tree/master/setting.yml.example) and copy it under your root directory. Read the [configuration](#model-configuration) guide for more information on model configuration.
+To train the model, create a `setting.yaml` file similar to the [example config file](https://github.com/vivitsai/SEGAN/blob/master/setting.yml.example) and copy it under your root directory. Read the [configuration](#model-configuration) guide for more information on model configuration.
 
 To train the model:
 ```bash
@@ -59,16 +59,16 @@ python test.py \
   --mask ./examples/places2/masks
   --output ./checkpoints/results
 ```
-This script will inpaint all images in `./examples/places2/images` using their corresponding masks in `./examples/places2/mask` directory and saves the results in `./checkpoints/results` directory. By default `test.py` script is run on stage 3 (`--model=3`).
+This script will inpaint all images in `./examples/celeba/images` using their corresponding masks mask.png and saves the results in output.png. 
 
 ### 3) Evaluating
-To evaluate the model, you need to first run the model in [test mode](#testing) against your validation set and save the results on disk. We provide a utility [`./scripts/metrics.py`](scripts/metrics.py) to evaluate the model using PSNR, SSIM and Mean Absolute Error:
+To evaluate the model, you need to first run the model in [test mode](#testing) against your validation set and save the results on disk. We provide a utility [`./evaluate.py`](evaluate.py) to evaluate the model using PSNR, SSIM:
 
 ```bash
-python ./metrics.py --data-path [path to validation set] --output-path [path to model output]
+python ./evaluate.py --data-path [path to validation set] --output-path [path to model output]
 ```
 
-To measure the Fréchet Inception Distance (FID score) run [`./scripts/fid_score.py`](scripts/fid_score.py). We utilize the PyTorch implementation of FID [from here](https://github.com/mseitzer/pytorch-fid) which uses the pretrained weights from PyTorch's Inception model.
+To measure the Fréchet Inception Distance (FID score) run [`./scripts/fid_score.py`](fid_score.py). We utilize the PyTorch implementation of FID [from here](https://github.com/mseitzer/pytorch-fid) which uses the pretrained weights from PyTorch's Inception model.
 
 ```bash
 python ./fid_score.py --path [path to validation, path to model output] --gpu [GPU id to use]
@@ -77,16 +77,15 @@ python ./fid_score.py --path [path to validation, path to model output] --gpu [G
 
 ### Model Configuration
 
-The model configuration is stored in a [`config.yaml`](setting.yml.example) file under your checkpoints directory. The following tables provide the documentation for all the options available in the configuration file:
+The model configuration is stored in a [`setting.yaml`](setting.yml.example) file under your root directory. The following tables provide the documentation for all the options available in the configuration file:
 
 
-#### Loading Train, Test and Validation Sets Configurations
+#### Loading Train and Validation Sets Configurations
 
 Option          | Description
 ----------------| -----------
-TRAIN_FLIST     | text file containing training set files list
-VAL_FLIST       | text file containing validation set files list
-TEST_FLIST      | text file containing test set files list
+train_shuffled.flist            | text file containing training set files list
+validation_shuffled.flist       | text file containing validation set files list
 
 
 #### Training Mode Configurations
