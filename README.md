@@ -8,26 +8,27 @@ We proposed SEGAN, a novel diversity-generated image inpainting adversarial netw
 Examples of the inpainting results of our method on a face, leaf, and rainforest image (the missing regions are shown in white). The left is the masked input image, while the right is the diverse and plausible direct output of our trained model without any postprocessing.
 
 ## Prerequisites
-- Python 3
-- Tensorflow1.10
+- Python 3.
+- Tensorflow (tested on Tensorflow-gpu 1.10.0).
 - NVIDIA GPU + CUDA cuDNN
 
 ## Installation
-- Clone this repo:
+- Clone this repository:
 ```bash
 git clone https://github.com/vivitsai/SEGAN.git
 ```
+- Install Python3 form https://www.python.org/
 - Install Tensorflow from https://tensorflow.google.cn/
 
 ## Datasets
-We use [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), [Agricultural Disease] and [MauFlex](http://didt.inictel-uni.edu.pe/dataset/MauFlex_Dataset.rar,) datasets. To train a model on the full dataset, download datasets from official websites. 
+We use [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), Agricultural Disease and [MauFlex](http://didt.inictel-uni.edu.pe/dataset/MauFlex_Dataset.rar,) datasets. To train a model on the full dataset, download datasets from official websites. 
 
 After downloading, run [`flist.py`](flist.py) to generate train, test and validation set file lists. 
 
 ## Getting Started
-Download the pre-trained models using the following links and copy them under `./checkpoints` directory.
+Download the pre-trained models using the following links and copy them under `./data_model` directory.
 
-[CelebA](#) (Released after publication)
+[CelebA](#)
 
 Alternatively, you can run the following script to automatically download the pre-trained models:
 ```bash
@@ -35,31 +36,19 @@ bash ./download_model.sh
 ```
 
 ### 1) Training
-To train the model, create a `config.yaml` file similar to the [example config file](https://github.com/knazeri/edge-connect/blob/master/config.yml.example) and copy it under your checkpoints directory. Read the [configuration](#model-configuration) guide for more information on model configuration.
+To train the model, create a `setting.yaml` file similar to the [example config file](https://github.com/vivitsai/SEGAN/tree/master/setting.yml.example) and copy it under your root directory. Read the [configuration](#model-configuration) guide for more information on model configuration.
 
-EdgeConnect is trained in three stages: 1) training the edge model, 2) training the inpaint model and 3) training the joint model. To train the model:
+To train the model:
 ```bash
-python train.py --model [stage] --checkpoints [path to checkpoints]
+python train.py
 ```
 
-For example to train the edge model on Places2 dataset under `./checkpoints/places2` directory:
-```bash
-python train.py --model 1 --checkpoints ./checkpoints/places2
-```
-
-Convergence of the model differs from dataset to dataset. For example Places2 dataset converges in one of two epochs, while smaller datasets like CelebA require almost 40 epochs to converge. You can set the number of training iterations by changing `MAX_ITERS` value in the configuration file.
+Convergence of the model differs from dataset to dataset. For example MauFlex dataset converges in one of 10 epochs, while larger datasets like CelebA require almost 20 epochs to converge. You can set the number of training iterations by changing MAX_ITERS value in the configuration file.
 
 ### 2) Testing
-To test the model, create a `config.yaml` file similar to the [example config file](setting.yml.example) and copy it under your checkpoints directory. Read the [configuration](#model-configuration) guide for more information on model configuration.
 
-You can test the model on all three stages: 1) edge model, 2) inpaint model and 3) joint model. In each case, you need to provide an input image (image with a mask) and a grayscale mask file. Please make sure that the mask file covers the entire mask region in the input image. To test the model:
 ```bash
-python test.py \
-  --model [stage] \
-  --checkpoints [path to checkpoints] \
-  --input [path to input directory or file] \
-  --mask [path to masks directory or mask file] \
-  --output [path to the output directory]
+python test.py --image examples/input.png --mask examples/mask.png --output examples/output.png --checkpoint model_logs/your_model_dir
 ```
 
 We provide some test examples under `./examples` directory. Please download the [pre-trained models](#getting-started) and run:
