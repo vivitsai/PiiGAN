@@ -15,13 +15,13 @@ Examples of the inpainting results of our method on a face, leaf, and rainforest
 ## Installation
 - Clone this repository:
 ```bash
-git clone https://github.com/vivitsai/SEGAN.git
+git clone https://github.com/vivitsai/PiiGAN.git
 ```
 - Install Python3 form https://www.python.org/
 - Install Tensorflow from https://tensorflow.google.cn/
 
 ## Datasets
-We use [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), [Agricultural Disease](#) and [MauFlex](http://didt.inictel-uni.edu.pe/dataset/MauFlex_Dataset.rar,) datasets. To train a model on the full dataset, download datasets from official websites. 
+We use [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), [PlantVillage](#) and [MauFlex](http://didt.inictel-uni.edu.pe/dataset/MauFlex_Dataset.rar,) datasets. To train a model on the full dataset, download datasets from official websites. 
 
 After downloading, run [`flist.py`](flist.py) to generate train and validation set file lists. 
 ```bash
@@ -39,7 +39,7 @@ bash ./download_model.sh
 ```
 
 ### 1) Training
-To train the model, create a `setting.yaml` file similar to the [example config file](https://github.com/vivitsai/SEGAN/blob/master/setting.yml.example) and copy it under your root directory. 
+To train the model, create a `setting.yaml` file similar to the [example config file](https://github.com/vivitsai/PiiGAN/blob/master/setting.yml.example) and copy it under your root directory. 
 
 To train the model:
 ```bash
