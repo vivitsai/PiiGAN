@@ -1,7 +1,7 @@
-## Diversity-Generated Image Inpainting with Style Extraction
+## PiiGAN: Generative Adversarial Networks for Pluralistic Image Inpainting
 [Code and model will be available after this paper is published](#)
 ### Introduction:
-We proposed SEGAN, a novel diversity-generated image inpainting adversarial network with a newly designed style extractor for diversity image inpainting tasks. For a single input image with missing regions, our model can generate numerous diverse results with plausible content. Experiments on various datasets have shown that our results are diverse and natural, especially for images with large missing areas. Detailed description of the method can be found in our paper.
+We proposed PiiGAN, a novel diversity-generated image inpainting adversarial network with a newly designed style extractor for diversity image inpainting tasks. For a single input image with missing regions, our model can generate numerous diverse results with plausible content. Experiments on various datasets have shown that our results are diverse and natural, especially for images with large missing areas. Detailed description of the method can be found in our paper.
 <p align='center'>  
   <img src='https://raw.githubusercontent.com/vivitsai/SEGAN/master/examples/case1.jpg' width='870'/>
 </p>
