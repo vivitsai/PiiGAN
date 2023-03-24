@@ -1,0 +1,84 @@
+# parameters
+DATASET: 'celeba'  # ' PlantVillage', 'MauFlex'
+RANDOM_CROP: True
+VAL: True
+LOG_DIR: kl_encorder_z_c_no_l1_has_ae_celebahq_
+MODEL_LOG : 'model_logs/'
+MODEL_RESTORE: ''
+
+GAN: 'wgan_gp'  # 'dcgan', 'lsgan', 'wgan_gp', 'one_wgan_gp'
+PRETRAIN_COARSE_NETWORK: False
+GAN_LOSS_ALPHA: 0.001  # dcgan: 0.0008, wgan: 0.0005, onegan: 0.001
+WGAN_GP_LAMBDA: 10
+COARSE_L1_ALPHA: 1.2
+L1_LOSS_ALPHA: 1.2
+AE_LOSS_ALPHA: 1.2
+LOSS_KL: 0.1
+REGRESSION_Z_LOSS_ALPHA: 1.2
+GAN_WITH_MASK: False
+DISCOUNTED_MASK: True
+RANDOM_SEED: False
+PADDING: 'SAME'
+
+# training
+NUM_GPUS: 1
+GPU_ID: -1  # -1 indicate select any available one, otherwise select gpu ID, e.g. [0,1,3]
+TRAIN_SPE: 5000
+MAX_ITERS: 1000000
+VIZ_MAX_OUT: 10
+GRADS_SUMMARY: False
+GRADIENT_CLIP: False
+GRADIENT_CLIP_VALUE: 0.1
+VAL_PSTEPS: 300
+
+# data
+DATA_FLIST:
+  # https://github.com/switchablenorms/CelebAMask-HQ
+  celebahq: [
+    'data/celeba_hq/train_shuffled.flist',
+    'data/celeba_hq/validation_static_view.flist'
+  ]
+  # http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html, please to use RANDOM_CROP: True
+  celeba: [
+    'data_flist/train_shuffled.flist',
+    'data_flist/validation_shuffled.flist'
+  ]
+  # PlantVillage
+  PlantVillage: [
+    'data/PlantVillage/train_shuffled.flist',
+    'data/PlantVillage/validation_static_view.flist'
+  ]
+  # http://didt.inictel-uni.edu.pe/dataset/MauFlex_Dataset.rar
+  MauFlex: [
+    'data/mauflex/train_shuffled.flist',
+    'data/mauflex/validation_static_view.flist'
+  ]
+
+STATIC_VIEW_SIZE: 15
+IMG_SHAPES: [128, 128, 3]
+HEIGHT: 64
+WIDTH: 64
+MAX_DELTA_HEIGHT: 8
+MAX_DELTA_WIDTH: 8
+BATCH_SIZE: 13
+VERTICAL_MARGIN: 0
+HORIZONTAL_MARGIN: 0
+
+# loss
+REGRESSION_Z_LOSS: True
+AE_LOSS: True
+L1_LOSS: True
+GLOBAL_DCGAN_LOSS_ALPHA: 1.
+GLOBAL_WGAN_LOSS_ALPHA: 1.
+
+# loss legacy
+LOAD_VGG_MODEL: False
+VGG_MODEL_FILE: data/
+FEATURE_LOSS: False
+GRAMS_LOSS: False
+TV_LOSS: False
+TV_LOSS_ALPHA: 0.
+FEATURE_LOSS_ALPHA: 0.01
+GRAMS_LOSS_ALPHA: 50
+SPATIAL_DISCOUNTING_GAMMA: 0.9
+
